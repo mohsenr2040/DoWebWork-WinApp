@@ -1,0 +1,17 @@
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.csproj.AssemblyReference.cache
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.csproj.SuggestedBindingRedirects.cache
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.Properties.Resources.resources
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.csproj.GenerateResource.cache
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.csproj.CoreCompileInputs.cache
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\selenium-manager\linux\selenium-manager
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\selenium-manager\macos\selenium-manager
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\selenium-manager\windows\selenium-manager.exe
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\RecordsAttachment.exe.config
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\RecordsAttachment.exe
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\RecordsAttachment.pdb
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\WebDriver.dll
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.csproj.CopyComplete
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.exe
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.pdb
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.Frm_Main.resources
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\WebDriver.Support.dll
