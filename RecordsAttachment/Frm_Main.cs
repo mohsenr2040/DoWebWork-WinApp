@@ -56,6 +56,13 @@ namespace RecordsAttachment
 
         private void Btn_Start_Click(object sender, EventArgs e)
         {
+            LbL_Message.Visible = false;
+            if (Txt_FileAddrress.Text.Trim() == "")
+            {
+                LbL_Message.Text="Select a file please!";
+                LbL_Message.Visible = true;
+                return;
+            }
             Lst_data = new List<string>();
             string SourceFile = @Txt_FileAddrress.Text;
             Lst_data = File.ReadAllLines(SourceFile).ToList();
@@ -65,27 +72,25 @@ namespace RecordsAttachment
             Prg_Attach.Step = 1;
 
             LoadItem();
-            //Btn_Start.Enabled = false;
+            Btn_Start.Enabled = false;
         }
 
         List<string> Lst_data_Exe = new List<string>();
         private void LoadItem()
         {
+            //if (!File.Exists(SourceFile))
+            //    File.Create(SourceFile);
 
-            //string DestinationFile = Path.GetDirectoryName(SourceFile) + "\\Destination" + DateTime.Now.Date.Day+ "-" + DateTime.Now.Date.Minute+".txt";
-            //if (!File.Exists(DestinationFile))
-            //    File.Create(DestinationFile);
-
-            //using (var fs = File.Open(SourceFile, FileMode.Open, FileAccess.ReadWrite))
+            //using (var fs = File.Open(DestinationFile, FileMode.Open, FileAccess.ReadWrite))
             //{
-            //    string line="";
+            //    string line = "";
             //    StreamReader Reader = new StreamReader(fs);
             //    StreamWriter Writer = new StreamWriter(fs);
             //    while ((line = Reader.ReadLine()) != null)
             //    {
             //        line += "=>Done";
-            //        Writer.Write(line);
-
+            //        Writer.WriteLine(line);
+            //        break;
             //    }
             //}
 
@@ -110,7 +115,7 @@ namespace RecordsAttachment
             //}
 
 
-            string  Str_data_sub = "";
+            string Str_data_sub = "";
 
             foreach (var item in Lst_data)
             {
@@ -123,11 +128,46 @@ namespace RecordsAttachment
             }
             if (Str_data_sub != "")
             {
+                LblCurrent_Changing(Str_data_sub + " is being done...");
                 Thread Thread1 = new Thread(() => DoJob(Str_data_sub));
                 Thread1.Name += Str_data_sub;
                 Thread1.Start();
                 //Thread.Sleep(4000);
             }
+        }
+
+        delegate void SetTextForLabel(string text);
+        private void LblCurrent_Changing(string text)
+        {
+            if (LbL_Current.InvokeRequired)
+            {
+                SetTextForLabel Stc_ = new SetTextForLabel(LblCurrent_Changing);
+                this.Invoke(Stc_, new object[] { text });
+            }
+            else
+            {
+                LbL_Current.Text = text;
+            }
+        }
+        private void SendReportToFile(string report)
+        {
+            string SourceFile = @Txt_FileAddrress.Text;
+            string DestinationFile = Path.GetDirectoryName(SourceFile) + "\\"+ Path.GetFileNameWithoutExtension(SourceFile) +"_report" + DateTime.Now.Date.Day + "-" + DateTime.Now.Date.Minute + ".txt";
+            if (!File.Exists(DestinationFile))
+            {
+                File.Create(DestinationFile);
+      
+            }
+            using (var fs = File.Open(DestinationFile, FileMode.Open, FileAccess.ReadWrite))
+            {
+                StreamReader Reader = new StreamReader(fs);
+                StreamWriter Writer = new StreamWriter(fs);
+               
+                Writer.WriteLine(report);
+                 
+            }
+           
+
         }
         public class SomeException : Exception
         {
@@ -244,15 +284,21 @@ namespace RecordsAttachment
                     }
 
                     //Thread.Sleep(8000);
-
+                    int loopcounter2 = 0;
                     while (step5 == 0)
                     {
+                        ++loopcounter2;
+                        if (loopcounter2 > 5)
+                        {
+                            throw new SomeException();
+                        }
+
                         IJavaScriptExecutor js5 = (IJavaScriptExecutor)driver;
                         string Str_records_count = (string)js5.ExecuteScript("return document.getElementsByClassName('fgButton')[0].rows[0].cells[3].innerText");
                         Regex re = new Regex(@"\d+");
                         Match records_count = re.Match(Str_records_count);
                         int Records = int.Parse(records_count.ToString());
-                        if (Records > 100)
+                        if (Records > 200)
                         {
                             Thread.Sleep(2000);
                         }
@@ -271,7 +317,7 @@ namespace RecordsAttachment
                                + " var spn_text = tbl.rows[0].cells[3].innerText;"
                                + " var regex = /\\d +/g;"
                                + " var rowcount = spn_text.match(regex);"
-                               + " if (rowcount < 100)"
+                               + " if (rowcount < 200)"
                                + " {"
                                + "     var checkAll = document.getElementsByClassName('checkAllgrp')[0];"
                                + "    checkAll.click();"
@@ -340,6 +386,11 @@ namespace RecordsAttachment
                     loopcounter = 0;
                 }
 
+                while(!FindElement("FlexGrid",FindBy.ById))
+                {
+                    Thread.Sleep(2000);
+                }
+
                 while (stepcounter < 5)
                 {
                     ++loopcounter;
@@ -390,6 +441,7 @@ namespace RecordsAttachment
                         step11 = 1;
                         step12 = 1;
                         step13 = 1;
+                        //SendReportToFile(data + " =>Not");
 
                         IJavaScriptExecutor js11_ = (IJavaScriptExecutor)driver;
                         string script11_ = "var btn2 = document.getElementsByClassName('btn btn-md btn-warning FlexGridHandler')[0];btn2.click();";
@@ -416,6 +468,8 @@ namespace RecordsAttachment
                     }
                     if (step10 == 0 && FindElement("FlexGrid", FindBy.ById))
                     {
+                        //SendReportToFile(data + " =>Done");
+
                         IJavaScriptExecutor js10 = (IJavaScriptExecutor)driver;
                         string script10 = " var tbl = document.getElementById('FlexGrid');"
                                         + "if (tbl.rows.length == 2)"
@@ -476,7 +530,9 @@ namespace RecordsAttachment
             }
             catch
             {
-                driver.Navigate().GoToUrl("http://ittms.tax.gov.ir/Pages/DataTTMS96/T96RemainViewSolr/20/1396/103/");
+                IJavaScriptExecutor js13 = (IJavaScriptExecutor)driver;
+                string script13 = " window.location.href='http://ittms.tax.gov.ir/Pages/DataTTMS96/T96RemainViewSolr/20/1396/103/'";
+                js13.ExecuteScript(script13);
                 Thread.Sleep(5000);
                 DoStepProgress();
                 LoadItem();
@@ -565,6 +621,7 @@ namespace RecordsAttachment
                 {
                 }
             }
+            button1.Enabled = false;
         }
     }
 }

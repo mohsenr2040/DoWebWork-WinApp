@@ -33,6 +33,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Brows = new System.Windows.Forms.Button();
             this.Txt_FileAddrress = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.LbL_Message = new System.Windows.Forms.Label();
+            this.LbL_Current = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Btn_Start
@@ -51,7 +54,7 @@
             // 
             this.Prg_Attach.Location = new System.Drawing.Point(30, 129);
             this.Prg_Attach.Name = "Prg_Attach";
-            this.Prg_Attach.Size = new System.Drawing.Size(650, 23);
+            this.Prg_Attach.Size = new System.Drawing.Size(660, 23);
             this.Prg_Attach.TabIndex = 1;
             // 
             // openFileDialog1
@@ -62,9 +65,9 @@
             // 
             this.Brows.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.Brows.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Brows.Location = new System.Drawing.Point(224, 47);
+            this.Brows.Location = new System.Drawing.Point(178, 47);
             this.Brows.Name = "Brows";
-            this.Brows.Size = new System.Drawing.Size(75, 23);
+            this.Brows.Size = new System.Drawing.Size(75, 22);
             this.Brows.TabIndex = 2;
             this.Brows.Text = "Brows";
             this.Brows.UseVisualStyleBackColor = true;
@@ -72,16 +75,50 @@
             // 
             // Txt_FileAddrress
             // 
-            this.Txt_FileAddrress.Location = new System.Drawing.Point(301, 49);
+            this.Txt_FileAddrress.Location = new System.Drawing.Point(253, 48);
             this.Txt_FileAddrress.Name = "Txt_FileAddrress";
+            this.Txt_FileAddrress.ReadOnly = true;
             this.Txt_FileAddrress.Size = new System.Drawing.Size(296, 20);
             this.Txt_FileAddrress.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Silver;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.button1.Location = new System.Drawing.Point(581, 23);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 72);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Puse";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // LbL_Message
+            // 
+            this.LbL_Message.AutoSize = true;
+            this.LbL_Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.LbL_Message.Location = new System.Drawing.Point(175, 82);
+            this.LbL_Message.Name = "LbL_Message";
+            this.LbL_Message.Size = new System.Drawing.Size(0, 13);
+            this.LbL_Message.TabIndex = 5;
+            this.LbL_Message.Visible = false;
+            // 
+            // LbL_Current
+            // 
+            this.LbL_Current.AutoSize = true;
+            this.LbL_Current.ForeColor = System.Drawing.Color.Blue;
+            this.LbL_Current.Location = new System.Drawing.Point(173, 102);
+            this.LbL_Current.Name = "LbL_Current";
+            this.LbL_Current.Size = new System.Drawing.Size(0, 13);
+            this.LbL_Current.TabIndex = 6;
             // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 190);
+            this.Controls.Add(this.LbL_Current);
+            this.Controls.Add(this.LbL_Message);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Txt_FileAddrress);
             this.Controls.Add(this.Brows);
             this.Controls.Add(this.Prg_Attach);
@@ -103,6 +140,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button Brows;
         private System.Windows.Forms.TextBox Txt_FileAddrress;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label LbL_Message;
+        private System.Windows.Forms.Label LbL_Current;
     }
 }
 
