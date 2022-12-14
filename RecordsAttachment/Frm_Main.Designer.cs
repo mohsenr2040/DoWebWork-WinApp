@@ -33,7 +33,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Brows = new System.Windows.Forms.Button();
             this.Txt_FileAddrress = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btn_Pause = new System.Windows.Forms.Button();
             this.LbL_Message = new System.Windows.Forms.Label();
             this.LbL_Current = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -81,22 +81,23 @@
             this.Txt_FileAddrress.Size = new System.Drawing.Size(296, 20);
             this.Txt_FileAddrress.TabIndex = 3;
             // 
-            // button1
+            // Btn_Pause
             // 
-            this.button1.BackColor = System.Drawing.Color.Silver;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.button1.Location = new System.Drawing.Point(581, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 72);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Puse";
-            this.button1.UseVisualStyleBackColor = false;
+            this.Btn_Pause.BackColor = System.Drawing.Color.Silver;
+            this.Btn_Pause.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.Btn_Pause.Location = new System.Drawing.Point(581, 23);
+            this.Btn_Pause.Name = "Btn_Pause";
+            this.Btn_Pause.Size = new System.Drawing.Size(109, 72);
+            this.Btn_Pause.TabIndex = 4;
+            this.Btn_Pause.Text = "Pause";
+            this.Btn_Pause.UseVisualStyleBackColor = false;
+            this.Btn_Pause.Click += new System.EventHandler(this.Btn_Puse_Click);
             // 
             // LbL_Message
             // 
             this.LbL_Message.AutoSize = true;
             this.LbL_Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LbL_Message.Location = new System.Drawing.Point(175, 82);
+            this.LbL_Message.Location = new System.Drawing.Point(180, 82);
             this.LbL_Message.Name = "LbL_Message";
             this.LbL_Message.Size = new System.Drawing.Size(0, 13);
             this.LbL_Message.TabIndex = 5;
@@ -106,7 +107,7 @@
             // 
             this.LbL_Current.AutoSize = true;
             this.LbL_Current.ForeColor = System.Drawing.Color.Blue;
-            this.LbL_Current.Location = new System.Drawing.Point(173, 102);
+            this.LbL_Current.Location = new System.Drawing.Point(180, 102);
             this.LbL_Current.Name = "LbL_Current";
             this.LbL_Current.Size = new System.Drawing.Size(0, 13);
             this.LbL_Current.TabIndex = 6;
@@ -118,11 +119,12 @@
             this.ClientSize = new System.Drawing.Size(723, 190);
             this.Controls.Add(this.LbL_Current);
             this.Controls.Add(this.LbL_Message);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_Pause);
             this.Controls.Add(this.Txt_FileAddrress);
             this.Controls.Add(this.Brows);
             this.Controls.Add(this.Prg_Attach);
             this.Controls.Add(this.Btn_Start);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Frm_Main";
@@ -140,7 +142,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button Brows;
         private System.Windows.Forms.TextBox Txt_FileAddrress;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_Pause;
         private System.Windows.Forms.Label LbL_Message;
         private System.Windows.Forms.Label LbL_Current;
     }

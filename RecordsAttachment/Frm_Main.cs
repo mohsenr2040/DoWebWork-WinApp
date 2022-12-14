@@ -29,6 +29,7 @@ namespace RecordsAttachment
         //ChromeOptions chromeOptions;
         IWebDriver driver;
         List<string> Lst_data;
+        string Str_Url = "";
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -56,6 +57,7 @@ namespace RecordsAttachment
 
         private void Btn_Start_Click(object sender, EventArgs e)
         {
+            Str_Url = driver.Url.ToString();
             LbL_Message.Visible = false;
             if (Txt_FileAddrress.Text.Trim() == "")
             {
@@ -78,43 +80,6 @@ namespace RecordsAttachment
         List<string> Lst_data_Exe = new List<string>();
         private void LoadItem()
         {
-            //if (!File.Exists(SourceFile))
-            //    File.Create(SourceFile);
-
-            //using (var fs = File.Open(DestinationFile, FileMode.Open, FileAccess.ReadWrite))
-            //{
-            //    string line = "";
-            //    StreamReader Reader = new StreamReader(fs);
-            //    StreamWriter Writer = new StreamWriter(fs);
-            //    while ((line = Reader.ReadLine()) != null)
-            //    {
-            //        line += "=>Done";
-            //        Writer.WriteLine(line);
-            //        break;
-            //    }
-            //}
-
-            //using (StreamReader file = new StreamReader(SourceFile))
-            //{
-            //    int counter = 0;
-            //    string Str_Line;
-
-            //    while ((Str_Line = file.ReadLine()) != null)
-            //    {
-
-            //        //Str_Line += "=>Done";
-
-            //        //writer.WriteLine(Str_Line);
-
-            //        //++counter;
-            //        //if (counter == 5)
-            //        //    break;
-
-            //    }
-
-            //}
-
-
             string Str_data_sub = "";
 
             foreach (var item in Lst_data)
@@ -141,33 +106,36 @@ namespace RecordsAttachment
         {
             if (LbL_Current.InvokeRequired)
             {
-                SetTextForLabel Stc_ = new SetTextForLabel(LblCurrent_Changing);
-                this.Invoke(Stc_, new object[] { text });
+                SetTextForLabel Stl = new SetTextForLabel(LblCurrent_Changing);
+                this.Invoke(Stl, new object[] { text });
             }
             else
             {
                 LbL_Current.Text = text;
             }
         }
+
+        List<string> Lst_reports = new List<string>();
         private void SendReportToFile(string report)
         {
+            Lst_reports.Add(report);
             string SourceFile = @Txt_FileAddrress.Text;
-            string DestinationFile = Path.GetDirectoryName(SourceFile) + "\\"+ Path.GetFileNameWithoutExtension(SourceFile) +"_report" + DateTime.Now.Date.Day + "-" + DateTime.Now.Date.Minute + ".txt";
+            string DestinationFile = Path.GetDirectoryName(SourceFile) + "\\" + Path.GetFileNameWithoutExtension(SourceFile) + "_report" + DateTime.Now.Date.Day + "-" + DateTime.Now.Date.Minute + ".txt";
             if (!File.Exists(DestinationFile))
             {
                 File.Create(DestinationFile);
-      
+
             }
             using (var fs = File.Open(DestinationFile, FileMode.Open, FileAccess.ReadWrite))
             {
                 StreamReader Reader = new StreamReader(fs);
                 StreamWriter Writer = new StreamWriter(fs);
-               
-                Writer.WriteLine(report);
-                 
+                foreach (var item in Lst_reports)
+                {
+                    Writer.WriteLine(item);
+                }
+                
             }
-           
-
         }
         public class SomeException : Exception
         {
@@ -472,20 +440,11 @@ namespace RecordsAttachment
 
                         IJavaScriptExecutor js10 = (IJavaScriptExecutor)driver;
                         string script10 = " var tbl = document.getElementById('FlexGrid');"
-                                        + "if (tbl.rows.length == 2)"
+                                        + "if (tbl.rows.length >= 2)"
                                         + "{"
                                         + "   var checkAll = document.getElementsByClassName('checkAllgrp')[0];"
                                         + "  checkAll.click();"
-                                        + "}"
-                                        + "else"
-                                        + " {"
-                                        + "  var btn2 = document.getElementsByClassName('btn btn-md btn-warning FlexGridHandler')[0];"
-                                        + " btn2.click();"
-                                        + " setTimeout(() => {"
-                                        + "     var div1 = document.getElementsByClassName('modal-footer')[0];"
-                                        + "    var btn3 = div1.querySelectorAll('button')[0];"
-                                        + "   btn3.click();"
-                                        + " }, 2000)};";
+                                        + "}";
                         js10.ExecuteScript(script10);
                         step10 = 1;
                         ++stepcounter;
@@ -511,7 +470,7 @@ namespace RecordsAttachment
                         step12 = 1;
                         ++stepcounter;
                     }
-                    Thread.Sleep(4000);
+                    Thread.Sleep(5000);
 
                     if (step13 == 0 && FindElement("modal-footer", FindBy.ByClass))
                     {
@@ -531,7 +490,7 @@ namespace RecordsAttachment
             catch
             {
                 IJavaScriptExecutor js13 = (IJavaScriptExecutor)driver;
-                string script13 = " window.location.href='http://ittms.tax.gov.ir/Pages/DataTTMS96/T96RemainViewSolr/20/1396/103/'";
+                string script13 = " window.location.href='"+Str_Url+"'";
                 js13.ExecuteScript(script13);
                 Thread.Sleep(5000);
                 DoStepProgress();
@@ -549,7 +508,6 @@ namespace RecordsAttachment
                 if (findBy.Equals(FindBy.ById))
                     try
                     {
-
                         webElement = driver.FindElement(By.Id(element));
                         Result = true;
                         break;
@@ -582,12 +540,12 @@ namespace RecordsAttachment
 
 
 
-        delegate void SetTextCallback();
+        delegate void SetPerformStep();
         public void DoStepProgress()
         {
             if (Prg_Attach.InvokeRequired)
             {
-                SetTextCallback Stc_ = new SetTextCallback(DoStepProgress);
+                SetPerformStep Stc_ = new SetPerformStep(DoStepProgress);
                 this.Invoke(Stc_, new object[] {  });
             }
             else
@@ -621,7 +579,13 @@ namespace RecordsAttachment
                 {
                 }
             }
-            button1.Enabled = false;
+            //Brows.Enabled = false;
+
+        }
+
+        private void Btn_Puse_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
