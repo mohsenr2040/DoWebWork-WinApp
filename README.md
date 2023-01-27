@@ -16,4 +16,4 @@ Project is created with:
 	
 ## Launch
 ``` 
-[Run preview in a .gif file](./Help/DoWebJob Running Review.gif)
+[Run preview in a .gif file](./Help/DoWebJob-Running-Review.gif)
