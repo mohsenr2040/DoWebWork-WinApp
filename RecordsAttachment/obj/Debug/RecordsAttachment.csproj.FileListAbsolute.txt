@@ -15,3 +15,7 @@ D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.ex
 D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.pdb
 D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.Frm_Main.resources
 D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\WebDriver.Support.dll
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\RecordsAttachment.exe.manifest
+D:\Projectsss\RecordsAttachment\RecordsAttachment\bin\Debug\RecordsAttachment.application
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.exe.manifest
+D:\Projectsss\RecordsAttachment\RecordsAttachment\obj\Debug\RecordsAttachment.application
