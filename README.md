@@ -15,4 +15,4 @@ Project is created with:
  * JavaScript
 	
 ## Launch
-[Running review in a GIF file](./Help/DoWebJob-Running-Review.gif)
+[Running App in a GIF file](./Help/DoWebJob-Running-Review.gif)
