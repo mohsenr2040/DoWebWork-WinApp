@@ -15,5 +15,4 @@ Project is created with:
  * JavaScript
 	
 ## Launch
-``` 
 [Run preview in a .gif file](./Help/DoWebJob-Running-Review.gif)
