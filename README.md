@@ -5,7 +5,7 @@
 * [Launch](#Launch)
 
 ## General info
-A desktop application that do a specific and repetitive task in web application. with Selenium Driver executes javascript codes 
+A desktop application that does a specific and repetitive task in web application. By Selenium Driver executes javascript codes 
 to find elements and change the value of or click on them.
 	
 ## Technologies
